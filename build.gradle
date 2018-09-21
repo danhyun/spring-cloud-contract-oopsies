@@ -48,3 +48,21 @@ test {
     exceptionFormat = 'full'
   }
 }
+
+task printYamls() {
+  def yamls = file('src/test/resources/contracts/rest/foo')
+
+  yamls.listFiles().each {
+    println "Found yaml: '$it.name'\n\n${it.text}"
+  }
+}
+
+task printGeneratedTests(dependsOn: generateContractTests) {
+  def generated = file('build/generated-test-sources/contracts/hello/verifier/rest')
+
+  generated.listFiles().each {
+    println "Found generated test: '$it.name'\n\n${it.text}"
+  }
+}
+
+tasks.compileTestJava.dependsOn(printYamls, printGeneratedTests)
