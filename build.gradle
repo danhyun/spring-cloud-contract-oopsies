@@ -49,19 +49,23 @@ test {
   }
 }
 
-task printYamls() {
-  def yamls = file('src/test/resources/contracts/rest/foo')
+task printYamls {
+  doLast {
+    def yamls = file('src/test/resources/contracts/rest/foo')
 
-  yamls.listFiles().each {
-    println "Found yaml: '$it.name'\n\n${it.text}"
+    yamls.listFiles().each {
+      println "Found yaml: '$it.name'\n\n${it.text}"
+    }
   }
 }
 
 task printGeneratedTests(dependsOn: generateContractTests) {
-  def generated = file('build/generated-test-sources/contracts/hello/verifier/rest')
+  doLast {
+    def generated = file('build/generated-test-sources/contracts/hello/verifier/rest')
 
-  generated.listFiles().each {
-    println "Found generated test: '$it.name'\n\n${it.text}"
+    generated.listFiles().each {
+      println "Found generated test: '$it.name'\n\n${it.text}"
+    }
   }
 }
 
