@@ -1,0 +1,13 @@
+language: java
+install: true
+
+script:
+  - ./gradlew clean test -d
+
+env:
+- CI=true
+
+cache:
+  directories:
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
