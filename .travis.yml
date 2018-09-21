@@ -2,7 +2,7 @@ language: java
 install: true
 
 script:
-  - ./gradlew clean test -i
+  - ./gradlew clean test
 
 env:
 - CI=true
