@@ -15,7 +15,7 @@ request:
   headers:
     content-type: application/json
   url: /foo
-  bodyFromFile: | # <-- invalid file name doesn't fail build
+  bodyFromFile: > # <-- invalid file name doesn't fail build
     [{
       "bar": {
         "baz": true
