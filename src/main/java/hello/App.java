@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,13 +19,16 @@ public class App {
         SpringApplication.run(App.class, args);
     }
 
-    @RequestMapping("/foo")
-    public List<Map<String, Object>> foo(@RequestBody List<Map<String, Object>> body) {
+    @RequestMapping("*")
+    public List<Map<String, Object>> foo(@RequestBody List<Map<String, Object>> body, HttpServletRequest req) {
         return body.stream()
                 .map(m -> {
                     Map<String, Object> map = new HashMap<>();
                     map.put("foo", m);
+                    map.put("number", 1);
+                    map.put("path", req.getRequestURI());
                     return map;
-                }).collect(Collectors.toList());
+                })
+                .collect(Collectors.toList());
     }
 }

@@ -1,4 +1,4 @@
-description: this doesn't generate json response assertions for body
+description: used to be able to generate tests with request path in matchers in 2.0.X
 request:
   method: POST
   headers:
@@ -15,6 +15,11 @@ response:
   headers:
     content-type: application/json;charset=UTF-8
   body:
-  - foo:
-      bar:
-        baz: true
+    - foo:
+        bar:
+          baz: true
+  matchers:
+    body:
+      - path: $[*].path
+        type: by_regex
+        value: "/{{{ request.path.[0] }}}"
