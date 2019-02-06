@@ -2,8 +2,8 @@ language: java
 install: true
 
 script:
-  - ./gradlew clean test
-  - ./gradlew clean test -PcontractsVersion=2.1.0.RELEASE
+  - ./gradlew clean test -d
+  - ./gradlew clean test -PcontractsVersion=2.1.0.RELEASE -d
 
 env:
 - CI=true
