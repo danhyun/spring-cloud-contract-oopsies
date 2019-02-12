@@ -22,4 +22,4 @@ response:
     body:
       - path: $[*].path
         type: by_regex
-        value: "/{{{ request.path.[0] }}}"
+        value: "\/{{{ request.path.[0] }}}"
